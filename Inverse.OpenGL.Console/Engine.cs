@@ -209,9 +209,9 @@ namespace Inverse.OpenGL.Console
 
         public void Load()
         {
-            //GL.DebugMessageCallback(OnDebugMessage, IntPtr.Zero);
-            //GL.Enable(EnableCap.DebugOutput);
-            //GL.Enable(EnableCap.DebugOutputSynchronous);
+            GL.DebugMessageCallback(DebugMessageDelegate, IntPtr.Zero);
+            GL.Enable(EnableCap.DebugOutput);
+            GL.Enable(EnableCap.DebugOutputSynchronous);
 
             this.cameraAngleX = this.cameraAngleY = 0.0f;
             this.cameraDistance = CAMERA_DISTANCE;
@@ -420,6 +420,8 @@ namespace Inverse.OpenGL.Console
         {
             this.Dispose();
         }
+
+        private static readonly DebugProc DebugMessageDelegate = OnDebugMessage;
 
         private static void OnDebugMessage(
                     DebugSource source,     // Source of the debugging message.
